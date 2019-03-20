@@ -1,0 +1,20 @@
+<ng-container *ngIf="opened">
+  <div #cookielawconsent class="cookie-law-consent">
+    <div class="cookie-law-consent-message">
+      <span *ngIf="typeMessage === 'askConsent'">{{ cookieLawConsentConfig.askConsentText }}</span>
+      <span *ngIf="typeMessage === 'hasDoNotTrack'">{{ cookieLawConsentConfig.doNotTrackText }}</span>
+    </div>
+
+    <div
+      *ngIf="typeMessage === 'askConsent' && (cookieLawConsentConfig.acceptButton || cookieLawConsentConfig.declineButton)"
+      class="bloc-button"
+    >
+      <button *ngIf="cookieLawConsentConfig.acceptButton" class="cookie-law-consent-button" (click)="cookieConsentService.accept()">
+        <span>{{ cookieLawConsentConfig.acceptButtonText }}</span>
+      </button>
+      <button *ngIf="cookieLawConsentConfig.declineButton" class="cookie-law-consent-button" (click)="cookieConsentService.deny()">
+        <span>{{ cookieLawConsentConfig.declineButtonText }}</span>
+      </button>
+    </div>
+  </div>
+</ng-container>

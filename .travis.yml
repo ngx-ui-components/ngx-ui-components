@@ -1,0 +1,19 @@
+language: node_js
+
+node_js:
+  - '10.15.3'
+  - stable
+os:
+  - linux
+
+cache:
+  directories:
+    - node_modules
+
+branches:
+  only: master
+
+script:
+  - npm run format:check
+  - ng build
+  - ng build app-ngx-ui-components

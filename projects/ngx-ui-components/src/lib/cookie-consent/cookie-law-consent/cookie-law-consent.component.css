@@ -1,0 +1,33 @@
+.cookie-law-consent {
+  position: fixed;
+  right: 0;
+  left: 0;
+  color: white;
+  font-size: 14px;
+  border: none;
+  background: #333;
+  z-index: 999998;
+  text-align: left;
+  display: inline-flex;
+}
+
+.cookie-law-consent-message {
+  padding: 15px;
+  width: 100%;
+}
+
+.cookie-law-consent-button {
+  border: none;
+  background: rgb(22, 136, 225);
+  color: rgb(255, 255, 255);
+  display: block;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 5px 10px;
+  margin: 10px 10px;
+}
+
+.bloc-button {
+  display: inline-flex;
+  white-space: nowrap;
+}

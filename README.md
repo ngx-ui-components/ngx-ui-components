@@ -9,8 +9,6 @@ https://ngx-ui-components.github.io
 - [About](#about)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Hooks](#hooks)
-- [Documentation](#documentation)
 - [License](#license)
 
 ## About

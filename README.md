@@ -15,9 +15,9 @@ https://ngx-ui-components.github.io
 
 Ngx-ui-components is a UI library usable with the Angular framework. Ngx-ui-components's vocation is to provide a bunch of components for everyday use. Ngx-ui-components is tree-shakable, so, it's lightweight. Currently, Ngx-ui-components provides:
 
-- Cookie consent: It's an Angular module for alerting users about the use of cookie for tracking on a website. This module try to respect cookie law relevant to EU. Optionally, it handles the de-identifying for Google Analitics.
-- Google Analytics: It's a just an Angular service which handles the common use cases.
-- Reading progress bar: This module adds a reading progress bar which helps users to see its progression when it scrolls in a page.
+- **Cookie consent**: It's an Angular module for alerting users about the use of cookie for tracking on a website. This module try to respect cookie law relevant to EU. Optionally, it handles the de-identifying for Google Analitics.
+- **Google Analytics**: It's a just an Angular service which handles the common use cases.
+- **Reading progress bar**: This module adds a reading progress bar which helps users to see its progression when it scrolls in a page.
 
 ## Installation
 

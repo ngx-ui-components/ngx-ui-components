@@ -1,0 +1,10 @@
+<div>
+  <div class="num-images">Number of &lt;img> tag on document: {{ numImages }}</div>
+  <div *ngFor="let i of numArr">
+    <ngx-ui-lazy-template>
+      <ng-template>
+        <img src="https://picsum.photos/800/300?image={{ i }}" alt="cover" />
+      </ng-template>
+    </ngx-ui-lazy-template>
+  </div>
+</div>

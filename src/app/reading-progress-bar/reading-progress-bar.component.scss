@@ -1,0 +1,12 @@
+.progression {
+  margin: 0;
+  padding: 0;
+  top: 0;
+  height: 4px;
+  position: fixed;
+  display: block;
+  width: 0%;
+  z-index: 12;
+  transition: width 0.5s ease;
+  background: #e9573f;
+}

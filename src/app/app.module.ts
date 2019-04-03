@@ -18,6 +18,7 @@ import { LazyPicturesComponent } from './lazy-template/pictures/lazy-pictures.co
 import { LazyComponentsComponent } from './lazy-template/components/lazy-components.component';
 import { DateComponent } from './lazy-template/components/date/date.component';
 import { LazyTemplatesComponent } from './lazy-template/lazy-template.component';
+import { NgRepeatDirective } from './lazy-template/components/ng-repeat.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LazyTemplatesComponent } from './lazy-template/lazy-template.component'
     HomeComponent,
     DateComponent,
     ReadingProgressBarComponent,
+    NgRepeatDirective,
   ],
   imports: [
     BrowserModule,

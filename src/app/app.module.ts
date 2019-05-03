@@ -18,6 +18,9 @@ import { LazyPicturesComponent } from './lazy-template/pictures/lazy-pictures.co
 import { LazyComponentsComponent } from './lazy-template/components/lazy-components.component';
 import { DateComponent } from './lazy-template/components/date/date.component';
 import { LazyTemplatesComponent } from './lazy-template/lazy-template.component';
+import { ControlValueAccessorComponent } from './control-value-accessor/control-value-accessor.component';
+import { CvaModule } from '../../projects/ngx-ui-components/src/lib/cva/cvs.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,15 +33,19 @@ import { LazyTemplatesComponent } from './lazy-template/lazy-template.component'
     HomeComponent,
     DateComponent,
     ReadingProgressBarComponent,
+    ControlValueAccessorComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+
     CookieLawConsentModule.forRoot(),
     GoogleAnalyticsModule.forRoot('UA-32348844-1'),
     ReadingProgressBarModule,
     LazyTemplateModule,
+    CvaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-control-value-accessor',
   templateUrl: './control-value-accessor.component.html',
-  styleUrls: ['./control-value-accessor.component.sass'],
+  styleUrls: ['./control-value-accessor.component.scss'],
 })
 export class ControlValueAccessorComponent implements OnInit {
   profileForm = new FormGroup({

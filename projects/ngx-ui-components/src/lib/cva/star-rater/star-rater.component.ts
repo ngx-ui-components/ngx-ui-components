@@ -1,16 +1,10 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  forwardRef,
-  OnInit,
-  Query,
-  QueryList,
-  Renderer2,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { AfterViewInit, Component, forwardRef, Input, QueryList, Renderer2, ViewChildren } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+export interface Rating {
+  text: string;
+  color: string;
+}
 
 @Component({
   selector: 'ngx-ui-star-rater',
@@ -25,78 +19,27 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class StarRaterComponent implements ControlValueAccessor, AfterViewInit {
-  public ratings = [
-    {
-      stars: 1,
-      text: 'must GTFO ASAP',
-      color: '#ff3722',
-    },
-    {
-      stars: 2,
-      text: 'meh',
-      color: '#ff8622',
-    },
-    {
-      stars: 3,
-      text: "it's ok",
-      color: '#ffce00',
-    },
-    {
-      stars: 4,
-      text: "I'd be sad if a black hole ate it",
-      color: '#73cf11',
-    },
-    {
-      stars: 5,
-      text: '10/10 would write review on Amazon',
-      color: '#00b67a',
-    },
-  ];
+  @Input() ratings: Rating[];
 
-  constructor(private renderer: Renderer2) {}
-
-  @ViewChildren('poly') star!: QueryList<'poly'>;
+  @ViewChildren('poly') star: QueryList<'poly'>;
 
   displayText: string;
 
-  public disabled: boolean;
-  public ratingText: string;
-  public _value: number;
+  disabled: boolean;
+  ratingText: string;
+  private value: number;
+
+  constructor(private renderer: Renderer2) {}
+
+  ngAfterViewInit() {
+    setTimeout(() => this.init());
+  }
 
   onChanged: any = () => {};
   onTouched: any = () => {};
 
-  ngAfterViewInit() {
-    this.init();
-  }
-
-  init() {
-    for (let i = 0; i < 5; i++) {
-      this.renderer.setStyle((this.star.toArray()[i] as any).nativeElement, 'fill', '#d8d8d8');
-    }
-    this.displayText = '';
-  }
-
-  onMouseOver(currentStar: any) {
-    for (let i = 0; i < 5; i++) {
-      this.renderer.removeStyle((this.star.toArray()[i] as any).nativeElement, 'fill');
-      if (i + 1 <= currentStar.stars) {
-        this.renderer.setStyle((this.star.toArray()[i] as any).nativeElement, 'fill', currentStar.color);
-      } else {
-        this.renderer.setStyle((this.star.toArray()[i] as any).nativeElement, 'fill', '#d8d8d8');
-      }
-    }
-    this.displayText = currentStar.text;
-  }
-
-  onMouseOut() {
-    if (!this._value) {
-      this.init();
-    }
-  }
-
   writeValue(val) {
-    this._value = val;
+    this.value = val;
   }
 
   registerOnChange(fn: any) {
@@ -110,12 +53,37 @@ export class StarRaterComponent implements ControlValueAccessor, AfterViewInit {
     this.disabled = isDisabled;
   }
 
-  setRating(star: any) {
+  onMouseOver(currentStar: Rating, idx: number) {
+    for (let i = 0; i < this.ratings.length; i++) {
+      this.renderer.removeStyle((this.star.toArray()[i] as any).nativeElement, 'fill');
+      if (i <= idx) {
+        this.renderer.setStyle((this.star.toArray()[i] as any).nativeElement, 'fill', currentStar.color);
+      } else {
+        this.renderer.setStyle((this.star.toArray()[i] as any).nativeElement, 'fill', '#d8d8d8');
+      }
+    }
+    this.displayText = currentStar.text;
+  }
+
+  onMouseOut() {
+    if (!this.value) {
+      this.init();
+    }
+  }
+
+  setRating(index: number) {
     if (!this.disabled) {
-      this._value = star.stars;
-      this.ratingText = star.text;
-      this.onChanged(star.stars);
+      this.value = index;
+      this.ratingText = this.ratings[index].text;
+      this.onChanged(index);
       this.onTouched();
     }
+  }
+
+  private init() {
+    for (let i = 0; i < this.ratings.length; i++) {
+      this.renderer.setStyle((this.star.toArray()[i] as any).nativeElement, 'fill', '#d8d8d8');
+    }
+    this.displayText = '';
   }
 }

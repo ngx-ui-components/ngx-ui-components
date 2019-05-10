@@ -40,7 +40,7 @@ describe('StarRaterComponent', () => {
     hostFixture.detectChanges();
     expect(testHostComponent.starRaterComponent._value).toEqual(3);
     const compiled = hostFixture.debugElement.nativeElement;
-    let selectedStars = compiled.querySelectorAll('gr-star-rater .selected');
+    const selectedStars = compiled.querySelectorAll('gr-star-rater .selected');
     expect(selectedStars.length).toEqual(3);
   });
 
@@ -48,7 +48,7 @@ describe('StarRaterComponent', () => {
     testHostComponent.rating.disable();
     hostFixture.detectChanges();
     const compiled = hostFixture.debugElement.nativeElement;
-    let stars = compiled.querySelector('gr-star-rater .stars');
+    const stars = compiled.querySelector('gr-star-rater .stars');
     expect(stars.classList.contains('disabled')).toBe(true);
   });
 
@@ -56,7 +56,7 @@ describe('StarRaterComponent', () => {
     testHostComponent.rating.disable();
     hostFixture.detectChanges();
     const compiled = hostFixture.debugElement.nativeElement;
-    let stars = compiled.querySelector('gr-star-rater .stars');
+    const stars = compiled.querySelector('gr-star-rater .stars');
     expect(stars.classList.contains('disabled')).toBe(true);
     testHostComponent.rating.enable();
     hostFixture.detectChanges();
@@ -68,7 +68,7 @@ describe('StarRaterComponent', () => {
     testHostComponent.rating.disable();
     hostFixture.detectChanges();
     const compiled = hostFixture.debugElement.nativeElement;
-    let star1 = compiled.querySelector('gr-star-rater .stars .star');
+    const star1 = compiled.querySelector('gr-star-rater .stars .star');
     star1.dispatchEvent(new Event('click'));
     hostFixture.detectChanges();
     expect(testHostComponent.rating.value).toBe(3);
@@ -84,7 +84,7 @@ describe('StarRaterComponent', () => {
 
   it('should call change with rating value when star selected', () => {
     const compiled = hostFixture.debugElement.nativeElement;
-    let star3 = compiled.querySelectorAll('gr-star-rater .stars .star')[2];
+    const star3 = compiled.querySelectorAll('gr-star-rater .stars .star')[2];
     star3.dispatchEvent(new Event('click'));
     hostFixture.detectChanges();
     expect(testHostComponent.rating.value).toBe(3);

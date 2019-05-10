@@ -27,7 +27,7 @@ export class StarRaterComponent implements ControlValueAccessor, AfterViewInit {
 
   disabled: boolean;
   ratingText: string;
-  private value: number;
+  _value: number;
 
   constructor(private renderer: Renderer2) {}
 
@@ -39,7 +39,7 @@ export class StarRaterComponent implements ControlValueAccessor, AfterViewInit {
   onTouched: any = () => {};
 
   writeValue(val) {
-    this.value = val;
+    this._value = val;
   }
 
   registerOnChange(fn: any) {
@@ -66,14 +66,14 @@ export class StarRaterComponent implements ControlValueAccessor, AfterViewInit {
   }
 
   onMouseOut() {
-    if (!this.value) {
+    if (!this._value) {
       this.init();
     }
   }
 
   setRating(index: number) {
     if (!this.disabled) {
-      this.value = index;
+      this._value = index;
       this.ratingText = this.ratings[index].text;
       this.onChanged(index);
       this.onTouched();

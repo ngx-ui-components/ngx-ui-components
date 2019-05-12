@@ -1,0 +1,18 @@
+<div>
+  <i>{{ displayText }}</i>
+</div>
+<div class="stars" [ngClass]="{ disabled: disabled }">
+  <ng-container *ngFor="let star of ratings; let idx = index">
+    <svg
+      title="{{ star.text }}"
+      height="25"
+      width="23"
+      class="star rating"
+      (mouseover)="onMouseOver(star, idx)"
+      (mouseout)="onMouseOut()"
+      (click)="setRating(idx)"
+    >
+      <polygon #poly points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78" style="fill-rule:nonzero;" />
+    </svg>
+  </ng-container>
+</div>

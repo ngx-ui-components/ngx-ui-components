@@ -1,0 +1,20 @@
+<p>
+  control-value-accessor works!
+</p>
+<form [formGroup]="profileForm">
+  <label>
+    First Name:
+    <input type="text" formControlName="firstName" />
+  </label>
+
+  <label>
+    Last Name:
+    <input type="text" formControlName="lastName" />
+  </label>
+  <label>
+    Rating:
+    <ngx-ui-star-rater formControlName="rating" [ratings]="ratings"></ngx-ui-star-rater>
+  </label>
+</form>
+
+{{ profileForm.getRawValue() | json }}

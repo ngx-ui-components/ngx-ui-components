@@ -6,10 +6,12 @@ import { ReadingProgressBarComponent } from './reading-progress-bar/reading-prog
 import { LazyComponentsComponent } from './lazy-template/components/lazy-components.component';
 import { LazyPicturesComponent } from './lazy-template/pictures/lazy-pictures.component';
 import { LazyTemplatesComponent } from './lazy-template/lazy-template.component';
+import { ControlValueAccessorComponent } from './control-value-accessor/control-value-accessor.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'reading-progress-bar', component: ReadingProgressBarComponent },
+  { path: 'control-value-accessor', component: ControlValueAccessorComponent },
   {
     path: 'lazy-template',
     component: LazyTemplatesComponent,

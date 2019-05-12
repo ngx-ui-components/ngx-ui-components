@@ -11,7 +11,7 @@ import { By } from '@angular/platform-browser';
 })
 class TestTemplateComponent {}
 
-fdescribe('ReadingProgressBarDirective', () => {
+describe('ReadingProgressBarDirective', () => {
   let fixture: ComponentFixture<TestTemplateComponent>, debugElement: DebugElement;
 
   beforeEach(() => {

@@ -73,9 +73,9 @@ export class StarRaterComponent implements ControlValueAccessor, AfterViewInit {
 
   setRating(index: number) {
     if (!this.disabled) {
-      this._value = index;
+      this._value = index + 1;
       this.ratingText = this.ratings[index].text;
-      this.onChanged(index);
+      this.onChanged(index + 1);
       this.onTouched();
     }
   }

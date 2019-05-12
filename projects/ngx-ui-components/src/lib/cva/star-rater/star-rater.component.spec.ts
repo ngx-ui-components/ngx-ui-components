@@ -1,17 +1,40 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ViewChild } from '@angular/core';
 
-import { StarRaterComponent } from './star-rater.component';
+import { Rating, StarRaterComponent } from './star-rater.component';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  template: '<gr-star-rater [formControl]="rating"></gr-star-rater>',
+  template: '<ngx-ui-star-rater [formControl]="rating" [ratings]="ratings"></ngx-ui-star-rater>',
 })
 class TestHostComponent {
   @ViewChild(StarRaterComponent)
   public starRaterComponent: StarRaterComponent;
 
   public rating: FormControl = new FormControl({ value: null, disabled: false });
+
+  public ratings: Rating[] = [
+    {
+      text: 'must GTFO ASAP',
+      color: '#ff3722',
+    },
+    {
+      text: 'meh',
+      color: '#ff8622',
+    },
+    {
+      text: "it's ok",
+      color: '#ffce00',
+    },
+    {
+      text: "I'd be sad if a black hole ate it",
+      color: '#73cf11',
+    },
+    {
+      text: '10/10 would write review on Amazon',
+      color: '#00b67a',
+    },
+  ];
 }
 
 describe('StarRaterComponent', () => {
@@ -40,15 +63,13 @@ describe('StarRaterComponent', () => {
     hostFixture.detectChanges();
     expect(testHostComponent.starRaterComponent._value).toEqual(3);
     const compiled = hostFixture.debugElement.nativeElement;
-    const selectedStars = compiled.querySelectorAll('gr-star-rater .selected');
-    expect(selectedStars.length).toEqual(3);
   });
 
   it('should set disabled class when formControl is disabled', () => {
     testHostComponent.rating.disable();
     hostFixture.detectChanges();
     const compiled = hostFixture.debugElement.nativeElement;
-    const stars = compiled.querySelector('gr-star-rater .stars');
+    const stars = compiled.querySelector('ngx-ui-star-rater .stars');
     expect(stars.classList.contains('disabled')).toBe(true);
   });
 
@@ -56,7 +77,7 @@ describe('StarRaterComponent', () => {
     testHostComponent.rating.disable();
     hostFixture.detectChanges();
     const compiled = hostFixture.debugElement.nativeElement;
-    const stars = compiled.querySelector('gr-star-rater .stars');
+    const stars = compiled.querySelector('ngx-ui-star-rater .stars');
     expect(stars.classList.contains('disabled')).toBe(true);
     testHostComponent.rating.enable();
     hostFixture.detectChanges();
@@ -68,7 +89,7 @@ describe('StarRaterComponent', () => {
     testHostComponent.rating.disable();
     hostFixture.detectChanges();
     const compiled = hostFixture.debugElement.nativeElement;
-    const star1 = compiled.querySelector('gr-star-rater .stars .star');
+    const star1 = compiled.querySelector('ngx-ui-star-rater .stars .star');
     star1.dispatchEvent(new Event('click'));
     hostFixture.detectChanges();
     expect(testHostComponent.rating.value).toBe(3);
@@ -76,15 +97,15 @@ describe('StarRaterComponent', () => {
 
   it('should call touched when star selected', () => {
     const compiled = hostFixture.debugElement.nativeElement;
-    let star1 = compiled.querySelector('gr-star-rater .stars .star');
+    let star1 = compiled.querySelector('ngx-ui-star-rater .stars .star');
     star1.dispatchEvent(new Event('click'));
     hostFixture.detectChanges();
-    expect(compiled.querySelector('gr-star-rater').classList.contains('ng-touched')).toBe(true);
+    expect(compiled.querySelector('ngx-ui-star-rater').classList.contains('ng-touched')).toBe(true);
   });
 
   it('should call change with rating value when star selected', () => {
     const compiled = hostFixture.debugElement.nativeElement;
-    const star3 = compiled.querySelectorAll('gr-star-rater .stars .star')[2];
+    const star3 = compiled.querySelectorAll('ngx-ui-star-rater .stars .star')[2];
     star3.dispatchEvent(new Event('click'));
     hostFixture.detectChanges();
     expect(testHostComponent.rating.value).toBe(3);
